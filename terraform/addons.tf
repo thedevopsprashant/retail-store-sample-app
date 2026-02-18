@@ -12,6 +12,7 @@ module "eks_addons" {
   cluster_version   = module.retail_app_eks.cluster_version
   oidc_provider_arn = module.retail_app_eks.oidc_provider_arn
 
+
   # =============================================================================
   # CERT-MANAGER - SSL Certificate Management
   # =============================================================================

@@ -379,14 +379,13 @@ Error: Failed to pull image "123456789012.dkr.ecr.us-west-2.amazonaws.com/retail
 - **Infrastructure issues**: Review Terraform logs
 - **Application issues**: Check ArgoCD UI and kubectl logs
 
+## Practical by Prashant
+
+- Run terraform in targets in sequence, terraform apply -target=module.vpc, then terraform apply -target=module.retail_app_eks, then terraform apply.
+
 ## License
 
 This project is licensed under the Apache License 2.0 - see the [LICENSE](./LICENSE) file for details.
-
-## Support
-
-- **Issues**: [GitHub Issues](https://github.com/LondheShubham153/retail-store-sample-app/issues)
-- **Discord**: [TrainWithShubhamCommunity](https://discord.gg/kGEr9mR5gT)
 
 ---
 
