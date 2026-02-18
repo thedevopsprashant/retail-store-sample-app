@@ -41,7 +41,7 @@ variable "argocd_namespace" {
 variable "argocd_chart_version" {
   description = "ArgoCD Helm chart version"
   type        = string
-  default     = "5.51.6"
+  default     = "9.4.2"
 }
 
 variable "enable_single_nat_gateway" {
