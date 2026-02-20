@@ -2,7 +2,7 @@
 
 <!-- GitOps Test: Testing deploy-simple.yml workflow -->
 
-<!-- Test commit -->
+<!-- Test comment -->
 
 | Language | Persistence |
 | -------- | ----------- |
