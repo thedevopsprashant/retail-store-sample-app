@@ -1,6 +1,6 @@
 # AWS Containers Retail Sample - Orders Service
 
-<!-- Test comment -->
+<!-- Test comments -->
 
 | Language | Persistence |
 | -------- | ----------- |
