@@ -1,6 +1,6 @@
 # AWS Containers Retail Sample - Catalog Service
 
-<!-- Test commentss -->
+<!-- Test comment -->
 
 | Language | Persistence |
 | -------- | ----------- |
