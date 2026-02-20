@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 10
+          fetch-depth: 2
 
       - name: Detect changed services
         id: changes
@@ -30,9 +30,10 @@ jobs:
           
           echo "🔍 Checking for changes in services..."
           
-          # Check for changes in each service
+          # Compare against main branch to detect changes
+          git fetch origin main --depth=1
           for service in "${SERVICES[@]}"; do
-            if git diff --name-only HEAD~1 HEAD | grep -q "^src/$service/" || [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            if git diff --name-only origin/main...HEAD | grep -q "^src/$service/" || [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
               CHANGED_SERVICES+=("$service")
               echo "✅ Changes detected in: $service"
             else
@@ -178,7 +179,7 @@ jobs:
       - name: Commit Helm changes for ${{ matrix.service }}
         run: |
           SERVICE="${{ matrix.service }}"
-          TAG="$(echo ${{ github.sha }} | cut -c1-7)"
+          TAG="$(echo ${{ github.sha }} | cut -c1-7)"git
           
           git config --local user.email "gitops@github.com"
           git config --local user.name "GitOps Bot"
