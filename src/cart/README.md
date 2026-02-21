@@ -1,6 +1,6 @@
 # AWS Containers Retail Sample - Cart Service
 
-<!-- Test comment -->
+<!-- Test comments -->
 
 | Language | Persistence     |
 | -------- | --------------- |

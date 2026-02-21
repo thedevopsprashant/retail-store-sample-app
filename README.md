@@ -438,13 +438,15 @@ aws ecr delete-repository --repository-name retail-store-orders --force
 
 ---
 
-## 🤝 Contributing
+## Handy Practical Commands Sequence: By Prashant
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+First checkout the code in local system using git clone. Switch to gitops branch and cd to terraform folder. Read tf config files on high level and do the required changes init if any. Then execute below commands in sequence.
+
+1. terraform plan -target=module.vpc, terraform apply --auto-approve -target=module.vpc
+2. terraform plan -target=module.retail_app_eks, terraform apply --auto-approve -target=module.retail_app_eks
+3. terraform apply --> To apply everything else, like helm, helm release for ArgoCD, Deploy applications in Argocd using kubectl commands written in null resource. Then in "Terraform output" all the links and handy URLs will be shown. Use them to access the Application using Load balancer URL. 
+4. For Gitops workflow, do the changes in src/ in each app, so that it creates new Docker image and pushes them to ECR. And it also Updated the ECR tag in Values.yml for each App. Then the ARGOCD will pick these new changes Automatically and deploy it to EKS Cluster.
+5. 
 
 ---
 
