@@ -444,9 +444,16 @@ First checkout the code in local system using git clone. Switch to gitops branch
 
 1. terraform plan -target=module.vpc, terraform apply --auto-approve -target=module.vpc
 2. terraform plan -target=module.retail_app_eks, terraform apply --auto-approve -target=module.retail_app_eks
-3. terraform apply --> To apply everything else, like helm, helm release for ArgoCD, Deploy applications in Argocd using kubectl commands written in null resource. Then in "Terraform output" all the links and handy URLs will be shown. Use them to access the Application using Load balancer URL. 
-4. For Gitops workflow, do the changes in src/ in each app, so that it creates new Docker image and pushes them to ECR. And it also Updated the ECR tag in Values.yml for each App. Then the ARGOCD will pick these new changes Automatically and deploy it to EKS Cluster.
-5. 
+3. For Gitops workflow, do the changes in src/ in each app, so that it creates new Docker image and pushes them to ECR. And it also Updated the ECR tag in Values.yml for each App. Make sure to "git pull" in local Gitops branch after the Docker Images are pushed to ECR and values.yml is updated in Remote Gitops branch. Then execute Step 4.
+4. terraform apply --auto-approve --> To apply everything else, like helm, helm release for ArgoCD, Deploy applications in Argocd using kubectl commands written in null resource. Then in "Terraform output" all the links and handy URLs will be shown. Use them to access the Application using Load balancer URL. 
+
+Handy Commands:
+aws eks update-kubeconfig --region ap-south-1 --name $(terraform output -raw cluster_name)
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d
+
+# Verify connection
+kubectl get nodes
+
 
 ---
 
