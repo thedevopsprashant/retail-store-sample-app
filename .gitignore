@@ -13,6 +13,9 @@ kubeconfig_*
 node_modules
 dist
 .venv
+claude.md
+.claude.*
+.claude-*
 
 ort-build
 
