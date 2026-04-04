@@ -1652,17 +1652,17 @@ spec:
           averageUtilization: 80
   behavior:
     scaleDown:
-      stabilizationWindowSeconds: 300
+      stabilizationWindowSeconds: 300 #Look at last 5 min(300 sec) of metrics, Choose the highest recommendation during that time
       policies:
         - type: Percent
-          value: 50
-          periodSeconds: 60
+          value: 50                  #You can reduce max 50% of pods
+          periodSeconds: 60          #Every 60 seconds
     scaleUp:
-      stabilizationWindowSeconds: 0
+      stabilizationWindowSeconds: 0    #No waiting, HPA reacts immediately
       policies:
         - type: Percent
-          value: 100
-          periodSeconds: 30
+          value: 100                #Can increase 100% (double pods)
+          periodSeconds: 30        #Every 30 seconds
 ```
 
 ### Pod Disruption Budgets (PDB)
