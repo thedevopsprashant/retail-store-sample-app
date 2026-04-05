@@ -12,7 +12,7 @@ resource "time_sleep" "wait_for_cluster" {
 }
 
 # =============================================================================
-# ARGOCD HELM INSTALLATION
+# ARGOCD INSTALLATION BY HELM
 # =============================================================================
 
 resource "helm_release" "argocd" {

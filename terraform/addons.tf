@@ -15,7 +15,7 @@ module "eks_addons" {
   # =============================================================================
   # CERT-MANAGER - SSL Certificate Management
   # =============================================================================
-  enable_cert_manager = true
+  enable_cert_manager = false # Set to true if you plan to use cert-manager for SSL certificates
   cert_manager = {
     most_recent = true
     namespace   = "cert-manager"

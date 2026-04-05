@@ -87,7 +87,7 @@ output "argocd_server_port_forward" {
 output "argocd_admin_password" {
   description = "Command to get ArgoCD admin password"
   value       = "kubectl -n ${var.argocd_namespace} get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d"
-  sensitive   = true
+  sensitive   = false # Should be true in production, but set to false here for demonstration purposes. 
 }
 
 # =============================================================================
