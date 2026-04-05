@@ -1,5 +1,5 @@
 # AWS Containers Retail Sample - Checkout Service
-<!-- Test commentss -->
+<!-- Test comment -->
 
 | Language | Persistence |
 | -------- | ----------- |
