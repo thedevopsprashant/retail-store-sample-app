@@ -30,7 +30,7 @@ resource "helm_release" "argocd" {
       # Server configuration
       server = {
         service = {
-          type = "ClusterIP"
+          type = "LoadBalancer" # ClusterIP, we can use port-forward cmd to access the ArgoCD server
         }
         ingress = {
           enabled = false  # We'll use port-forward for access

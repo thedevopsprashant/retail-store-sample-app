@@ -445,7 +445,7 @@ First checkout the code in local system using git clone. Switch to gitops branch
 1. cd to terraform folder, terraform init, terraform plan -target=module.vpc, 
 terraform apply --auto-approve -target=module.vpc
 2. terraform plan -target=module.retail_app_eks, terraform apply --auto-approve -target=module.retail_app_eks
-3. For Gitops workflow, do the changes in src/ in each app, so that it creates new Docker image and pushes them to ECR. And it also Updated the ECR tag in Values.yml for each App. Make sure to "git pull" in local Gitops branch after the Docker Images are pushed to ECR and values.yml is updated in Remote Gitops branch. Then execute Step 4.
+3. For Gitops workflow To Run It, do the changes in src/ in each app, so that it creates new Docker image and pushes them to ECR ( No Manual Trigger for Github Action). And it also Updated the ECR tag in Values.yml for each App. Make sure to "git pull" in local Gitops branch after the Docker Images are pushed to ECR and values.yml is updated in Remote Gitops branch. Then execute Step 4.
 4. terraform apply --auto-approve --> To apply everything else, like helm, helm release for ArgoCD, Deploy applications in Argocd using kubectl commands written in null resource. Then in "Terraform output" all the links and handy URLs will be shown. Use them to access the Application using Load balancer URL. 
 5. If No Applications shown in ArgoCd Dashboard then Run again-> terraform apply --auto-approve, This will redeploy all Application ymls for retail store.
 6. terraform destroy --auto-approve --> To destroy Everything. Also Delete ECR Repositries Manually from Console.
