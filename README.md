@@ -452,11 +452,31 @@ terraform apply --auto-approve -target=module.vpc
 
 Handy Commands:
 aws eks update-kubeconfig --region ap-south-1 --name retail-store-zhl4
-kubectl port-forward svc/argocd-server -n argocd 8080:443
+kubectl port-forward svc/argocd-server -n argocd 8080:443 (ArgoCD can also be exposed on LB)
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d
 
-# Verify connection
+# Verify connection and Experimental Commands - Prashant
 kubectl get nodes
+
+-n retail-store
+k exec -it retail-store-ui-df97497f-whrtc -n retail-store -- bash
+k exec <pod-name> -- curl localhost:8080/actuator/health/readiness
+
+k get secrets -A
+k get sa -A
+k describe sa retail-store-ui -n retail-store
+k -n retail-store get secret catalog-db -o jsonpath='{.data.RETAIL_CATALOG_PERSISTENCE_USER}' | base64 -d
+k get cm -n retail-store
+
+Worked in UI Pod to check connectivity with self and other microcervices:
+curl localhost:8080/actuator/prometheus
+kubectl port-forward svc/retail-store-orders 8081:80 -n retail-store
+curl localhost:8081/actuator/metrics/http.server.requests
+curl http://retail-store-catalog:80/health
+curl http://retail-store-catalog:80/metrics
+curl http://retail-store-cart-carts:80/actuator/health
+curl 172.20.54.16:80/catalogue/products
+curl 10.0.11.95:8080/catalogue/products
 
 
 ---
